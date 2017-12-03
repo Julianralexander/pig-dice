@@ -1,0 +1,22 @@
+body {
+   background: linear-gradient(to right,);
+}
+
+.jumbotron {
+  margin: 20px;
+  font-family: sans-serif;
+  background: linear-gradient(to right,);
+}
+
+#questions {
+  margin: 60px;
+}
+
+.result {
+  background: #ffffff;
+  background-blend-mode: lighten;
+}
+
+#resultDetails {
+  display: show;
+}
