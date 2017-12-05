@@ -1,42 +1,69 @@
-function Ticket(movie, time, age) {
-  this.movie = movie;
-  this.time = time;
-  this.age = age;
-};
+//Back End
+function Player(name, roll, turnTotal, gameTotal) {
+  this.name = name;
+  this.roll = roll;
+  this.turnTotal = turnTotal;
+  this.gameTotal = gameTotal;
+}
 
-Ticket.prototype.calculator = function(ticketPrice) {
-  if (this.movie === "bladerunner") {
-    ticketPrice += 3;
-  } if (this.time === "matinee"){
-    ticketPrice -= 2;
-  } if (this.age === "senior") {
-    ticketPrice -= 3;
-  } if (this.age === "youth") {
-    ticketPrice -= 1;
+Player.prototype.randomNum = function() {
+  var num = Math.floor(Math.random() * 5);
+  num += 1;
+  this.roll = num;
+}
+
+Player.prototype.hold = function(result) {
+  this.gameTotal += this.turnTotal;
+  this.turnTotal = 0;
+  this.roll = 0;
+  player1Turn = !player1Turn;
+}
+
+Player.prototype.addRoll = function() {
+  if (roll === 1) {
+    this.turnTotal = 0;
+  } else {
+    this.turnTotal += roll;
   }
-  return ticketPrice;
-};
+}
 
 
+
+//UI
 $(document).ready(function() {
-  $('#questions').submit(function(event) {
+
+  var turnTotal = 0;
+  var newPlayer1 = new Player(name, 0, 0, 0);
+  var newPlayer2 = new Player(name, 0, 0, 0);
+  var player1Turn = true;
+
+
+  $('#player1form').submit(function(event) {
     event.preventDefault();
-    $(".result").empty();
+    var player1Name = $("input#player1").val();
 
-    var ticketPrice = 10;
+    $("#name1").text(player1Name);
+  });
 
-    var inputtedMovie = $("#movies").val();
-    var inputtedTime = $("#time").val();
-    var inputtedAge = $("#age").val();
+  $('#player2form').submit(function(event) {
+    event.preventDefault();
+    var player2Name = $("input#player2").val();
 
-    var adjustedPrice = new Ticket(inputtedMovie, inputtedTime, inputtedAge);
+    $("#name2").text(player2Name);
+  });
 
-    $(".result").append("<div id='resultDetails'>" +
-                        "<h3>" + adjustedPrice.movie + "</h3>" +
-                        "<h4>Your Showing: " + adjustedPrice.time + "</h4>" +
-                        "<h5> Your ticket will cost $" + adjustedPrice.calculator(ticketPrice) + "</h5>"
-                        + "</div>");
+  $('#roll').click(function(){
+    if (player1Turn === true) {
+      newPlayer1.roll = newPlayer1.randomNum;
+      console.log(newPlayer1.roll);
 
-
+    };
+    // result = this.randomNum();
+    // $("#result").text(result);
+    turnTotal = turnTotal + result;
+    $("#turn-total").text(turnTotal);
+  });
+  $('#hold').click(function(){
+    console.log("this");
   });
 });

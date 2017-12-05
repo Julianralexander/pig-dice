@@ -1,0 +1,5 @@
+1. When a user enters name, it will be stored as a player. (Example input: user name, example output: user name)
+2. When a user clicks the roll button, a random number from 1-6 will be generated, and added to the player's current score. (Example input: click, example output: +4)
+3. When the number 1 is generated, the current score will be set to zero and the current turn will end. (Example input: 1, example output: 0)
+4. When a user clicks the hold button, the current score will be added to their total score (Example input: click, example output: +20)
+5. When a user's total score hits 100, a message will be displayed. (Example input: 100, example output: "You win!")

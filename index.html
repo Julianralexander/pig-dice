@@ -5,43 +5,54 @@
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/scripts.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
     <title></title>
   </head>
   <body>
     <div class="container" align="center">
       <div class="jumbotron">
-        <h2>Header</h2>
+        <h2>Pig Dice</h2>
 
       </div>
-      <form id="questions" align="center">
-        <h4></h4>
-        <select id="">
-          <option value="">Choose one</option>
-          <option value=""></option>
-          <option value=""></option>
-          <option value=""></option>
-        </select>
-        <h4></h4>
-        <select id="">
-          <option value="">Choose one</option>
-          <option value=""></option>
-          <option value=""></option>
-        </select>
-        <h4></h4>
-        <select id="">
-          <option value="">Choose one</option>
-          <option value=""></option>
-          <option value=""></option>
-          <option value=""></option>
-        </select>
-        <br>
-        <br>
-        <button type="submit" class="btn btn-danger">Generate result</button>
-      </form>
-
-      <div class="result">
-
+      <div class="row">
+        <div class="col-md-4">
+          <div class="input">
+            <form id="player1form">
+              <div class="form-group">
+                <label for="player1">Player 1:</label>
+                <input id="player1" class="form-control" type="text">
+                <br>
+                <button type="submit" class="btn btn-lg">Set name</button>
+              </div>
+            </form>
+          </div>
+          <div id="name1"></div>
+        </div>
+        <div class="col-md-4">
+          <p><strong>Dice roll:</strong></p>
+          <div id="result"></div>
+          <div id="image"></div>
+          <div id="buttons">
+            <button class="btn btn-lg" id="roll">Roll</button>
+            <button class="btn btn-lg" id="hold">Hold</button>
+          </div>
+          <p><strong>Total:</strong></p>
+          <div id="turn-total"></div>
+        </div>
+        <div class="col-md-4">
+          <div class="input">
+            <form id="player2form">
+            <div class="form-group">
+              <label for="player2">Player 2:</label>
+              <input id="player2" class="form-control" type="text">
+              <br>
+              <button type="submit" class="btn btn-lg">Set name</button>
+            </div>
+          </form>
+          </div>
+          <div id="name2"></div>
       </div>
+
     </div>
   </body>
 </html>
