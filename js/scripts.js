@@ -13,14 +13,14 @@ Player.prototype.randomNum = function() {
   return num;
 }
 
-Player.prototype.hold = function(result) {
+Player.prototype.hold = function() {
   this.gameTotal += this.turnTotal;
   this.turnTotal = 0;
   this.roll = 0;
-  player1Turn = !player1Turn;
+  this.myTurn = !this.myTurn;
 }
 
-Player.prototype.addRoll = function(player1Turn) {
+Player.prototype.addRoll = function() {
   if (this.roll === 1) {
     console.log("sky");
     this.turnTotal = 0;
@@ -44,7 +44,7 @@ $(document).ready(function() {
     event.preventDefault();
     var player1Name = $("input#player1").val();
     $("#player1form").hide();
-
+    newPlayer1.name = player1Name;
     $("#name1").text(player1Name);
   });
 //Player 2 Disply Function
@@ -52,20 +52,29 @@ $(document).ready(function() {
     event.preventDefault();
     var player2Name = $("input#player2").val();
     $("#player2form").hide();
+    newPlayer2.name = player2Name;
     $("#name2").text(player2Name);
   });
 
   $('#roll').click(function(){
-    if (player1Turn === true) {
+    if (newPlayer1.myTurn === true) {
       newPlayer1.roll = newPlayer1.randomNum();
-      newPlayer1.addRoll(player1Turn);
+      newPlayer1.addRoll();
+      $("#result").text(newPlayer1.roll);
+      $("#turn-total").text(newPlayer1.turnTotal);
       console.log(newPlayer1);
-    };
+    } else {
+      newPlayer2.roll = newPlayer2.randomNum();
+      newPlayer2.addRoll();
+      $("#result").text(newPlayer2.roll);
+      $("#turn-total").text(newPlayer2.turnTotal);
+      console.log(newPlayer2);
 
-    $("#result").text(newPlayer1.roll);
-    $("#turn-total").text(newPlayer1.turnTotal);
-    console.log(player1Turn);
+    }
+
   });
+
+
   $('#hold').click(function(){
 
   });
