@@ -1,4 +1,7 @@
 //Back End
+var player1Turn = true;
+
+
 function Player(name, roll, turnTotal, gameTotal, myTurn) {
   this.name = name;
   this.roll = roll;
@@ -24,20 +27,29 @@ Player.prototype.addRoll = function() {
   if (this.roll === 1) {
     console.log("sky");
     this.turnTotal = 0;
-    this.myTurn = !this.myTurn;
+    switchTurn();
   } else {
     this.turnTotal += this.roll;
     console.log("tar");
   }
 }
 
+function switchTurn() {
+  if (player1Turn === true) {
+    player1Turn = false;
+  } else {
+    player1Turn = true;
+  }
+}
+
 //UI
 $(document).ready(function() {
+
 
   // var turnTotal = 0;
   var newPlayer1 = new Player(name, 0, 0, 0, true);
   var newPlayer2 = new Player(name, 0, 0, 0, false);
-  var player1Turn = true;
+
 
 //Player 1 Disply Function
   $('#player1form').submit(function(event) {
@@ -57,7 +69,8 @@ $(document).ready(function() {
   });
 
   $('#roll').click(function(){
-    if (newPlayer1.myTurn === true) {
+    console.log(player1Turn);
+    if (player1Turn === true) {
       newPlayer1.roll = newPlayer1.randomNum();
       newPlayer1.addRoll();
       $("#result").text(newPlayer1.roll);
@@ -69,6 +82,7 @@ $(document).ready(function() {
       $("#result").text(newPlayer2.roll);
       $("#turn-total").text(newPlayer2.turnTotal);
       console.log(newPlayer2);
+
 
     }
 
