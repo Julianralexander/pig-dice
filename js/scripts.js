@@ -88,8 +88,15 @@ $(document).ready(function() {
 
   });
 
-
   $('#hold').click(function(){
+    if (player1Turn === true) {
+      newPlayer1.hold();
+    } else {
+      newPlayer2.hold();
+    }
+  });
+
+
 
   });
 });
