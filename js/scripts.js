@@ -12,25 +12,27 @@ Player.prototype.randomNum = function() {
   return num;
 }
 
-Player.prototype.hold = function(result) {
-  this.gameTotal += this.turnTotal;
-  this.turnTotal = 0;
-  this.roll = 0;
-  player1Turn = !player1Turn;
-}
+// Player.prototype.hold = function(result) {
+//   this.gameTotal += this.turnTotal;
+//   this.turnTotal = 0;
+//   this.roll = 0;
+//   player1Turn = !player1Turn;
+// }
 
 Player.prototype.addRoll = function() {
-  if (roll === 1) {
+  if (this.roll === 1) {
+    console.log("sky");
     this.turnTotal = 0;
   } else {
-    this.turnTotal += roll;
+    this.turnTotal += this.roll;
+    console.log("tar");
   }
 }
 
 //UI
 $(document).ready(function() {
 
-  var turnTotal = 0;
+  // var turnTotal = 0;
   var newPlayer1 = new Player(name, 0, 0, 0);
   var newPlayer2 = new Player(name, 0, 0, 0);
   var player1Turn = true;
@@ -53,13 +55,13 @@ $(document).ready(function() {
   $('#roll').click(function(){
     if (player1Turn === true) {
       newPlayer1.roll = newPlayer1.randomNum();
+      newPlayer1.addRoll();
       console.log(newPlayer1);
-
     };
     // result = this.randomNum();
     // $("#result").text(result);
-    turnTotal = turnTotal + result;
-    $("#turn-total").text(turnTotal);
+    // turnTotal = turnTotal + result;
+    $("#turn-total").text(newPlayer1.turnTotal);
   });
   $('#hold').click(function(){
     console.log("this");
