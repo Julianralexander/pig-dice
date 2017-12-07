@@ -9,7 +9,7 @@ function Player(name, roll, turnTotal, gameTotal) {
 Player.prototype.randomNum = function() {
   var num = Math.floor(Math.random() * 5);
   num += 1;
-  this.roll = num;
+  return num;
 }
 
 Player.prototype.hold = function(result) {
@@ -26,8 +26,6 @@ Player.prototype.addRoll = function() {
     this.turnTotal += roll;
   }
 }
-
-
 
 //UI
 $(document).ready(function() {
@@ -54,8 +52,8 @@ $(document).ready(function() {
 
   $('#roll').click(function(){
     if (player1Turn === true) {
-      newPlayer1.roll = newPlayer1.randomNum;
-      console.log(newPlayer1.roll);
+      newPlayer1.roll = newPlayer1.randomNum();
+      console.log(newPlayer1);
 
     };
     // result = this.randomNum();
